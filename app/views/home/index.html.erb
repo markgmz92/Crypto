@@ -1,0 +1,14 @@
+<h1>Hello world!</h1>
+<p>Testing!</p>
+
+<%	@coins %>
+
+<% for x in @coins %>
+	<% for coin in @my_coins %>
+		<% if coin == x["symbol"] %>
+			<%= x["name"] %>: $<%= x["price_usd"]%></br>
+			<%= x["rank"] %><br/><br/>
+			<%end %>
+		<%end%>
+	<%end%>
+
