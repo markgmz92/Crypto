@@ -1,6 +1,7 @@
 class CoinsController < ApplicationController
   before_action :set_coin, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
 
   # GET /coins
   # GET /coins.json
@@ -71,5 +72,10 @@ class CoinsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def coin_params
       params.require(:coin).permit(:symbol, :user_id, :cost_per, :amount_owned)
+    end
+
+    def correct_user
+      @correct = current_user.coins.find_by(id: params[:id])
+      redirect_to coins_path, notice: "Not authorized to edit this entry" if @correct.nil?
     end
 end
