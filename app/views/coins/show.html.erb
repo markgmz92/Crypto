@@ -1,13 +1,30 @@
+<% for x in @show_coin %>
+	<% if @coin.symbol.upcase == x["symbol"]  %>
+
+		<% coin_name = x["name"] %>
+		<% coin_price = x["price_usd"]%>
+		<% coin_rank = x["rank"] %>
+		<% end %>
+	<% end %>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= coin_name  %></h3>
+  </div>
+  <div class="panel-body">
+
+<h1><%= @coin.symbol.upcase %></h1>
+
 <p>
-  <strong>Symbol:</strong>
-  <%= @coin.symbol %>
+	<strong>Current Price: </strong>
+	<%= coin_price %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @coin.user_id %>
+	<strong>Rank: </strong>
+	<%= coin_rank %>
 </p>
-
 <p>
   <strong>Cost per:</strong>
   <%= @coin.cost_per %>
@@ -18,6 +35,11 @@
   <%= @coin.amount_owned %>
 </p>
 
-<%= link_to 'Edit', edit_coin_path(@coin) %> |
-<%= link_to 'Delete Crypto Currency', coin_path(@coin), method: :delete, data: { confirm: "Are you sure?"}  %> |
-<%= link_to 'Back', coin_path %>
+</div>
+	<div class="panel-footer">
+	<%= link_to 'Edit', edit_coin_path(@coin) %> |
+	<%= link_to 'Delete Crypto Currency', coin_path(@coin), method: :delete, data: { confirm: "Are you sure?"}  %> |
+	<%= link_to 'Back', coin_path %>
+	</div>
+</div>
+
