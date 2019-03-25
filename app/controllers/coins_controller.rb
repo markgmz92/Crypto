@@ -7,6 +7,13 @@ class CoinsController < ApplicationController
   # GET /coins.json
   def index
     @coins = Coin.all
+    require 'net/http'
+    require 'json'
+
+    @url = 'https://api.coinmarketcap.com/v1/ticker/'
+    @uri = URI(@url)
+    @response = Net::HTTP.get(@uri)
+    @lookup_coin = JSON.parse(@response)
   end
 
   # GET /coins/1
