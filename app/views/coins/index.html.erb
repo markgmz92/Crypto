@@ -1,3 +1,4 @@
+<% profit_loss = 0 %>
 <h1>Listing Cryptos</h1>
 <br/>
 <table class="table table-striped table-bordered table-hover">
@@ -5,8 +6,14 @@
     <tr>
       <th>Name</th>
       <th>Current Price</th>
-      <th>Total Value</th>
-      <th>Cost per</th>
+      <th>Rank</th>
+      <th>1 HR %</th>
+      <th>24 HR % </th>
+      <th>7 Day %</th>
+      <th>Current Value</th>
+      <th>Total Paid</th>
+      <th>Profit/Loss</th>
+      <th>Cost Paid Per</th>
       <th>Amount owned</th>
     </tr>
   </thead>
@@ -22,7 +29,15 @@
               <% if coin.symbol == x["symbol"]  %>
                     <td><%= link_to x["name"], coin %></td>
                     <td>$<%=x["price_usd"] %></td>
+                    <td><%=x["rank"] %></td>
+                    <td><%=x["percent_change_1h"] %></td>
+                    <td><%=x["percent_change_24h"] %></td>
+                    <td><%=x["percent_change_7d"] %></td>
+
                     <td>$<%= x["price_usd"].to_d * coin.amount_owned  %></td>
+                    <td>$<%= coin.cost_per * coin.amount_owned %></td>
+                    <td>$<%= (x["price_usd"].to_d * coin.amount_owned ) -  (coin.cost_per * coin.amount_owned)%></td>
+                    <% profit_loss += (x["price_usd"].to_d * coin.amount_owned ) - (coin.cost_per * coin.amount_owned)%>
               <% end %>
             <% end %>
 
@@ -34,6 +49,9 @@
   </tbody>
 </table>
 
-<br>
+<br/>
+<br/>
 
+<strong>Portfolio Profit/Loss: </strong><%= number_to_currency(profit_loss) %>
+<br/><br/>
 <%= link_to 'New Coin', new_coin_path, class: "btn btn-default" %>
