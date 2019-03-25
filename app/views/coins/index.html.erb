@@ -4,7 +4,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Symbol</th>
+      <th>Current Price</th>
+      <th>Total Value</th>
       <th>Cost per</th>
       <th>Amount owned</th>
     </tr>
@@ -20,11 +21,12 @@
             <% for x in @lookup_coin %>
               <% if coin.symbol == x["symbol"]  %>
                     <td><%= link_to x["name"], coin %></td>
+                    <td>$<%=x["price_usd"] %></td>
+                    <td>$<%= x["price_usd"].to_d * coin.amount_owned  %></td>
               <% end %>
             <% end %>
 
-        <td><%= coin.symbol %></td>
-        <td><%= coin.cost_per %></td>
+        <td>$<%= coin.cost_per %></td>
         <td><%= coin.amount_owned %></td>
       </tr>
       <% end %>
