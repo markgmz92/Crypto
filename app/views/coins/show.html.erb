@@ -19,4 +19,5 @@
 </p>
 
 <%= link_to 'Edit', edit_coin_path(@coin) %> |
-<%= link_to 'Back', coins_path %>
+<%= link_to 'Delete Crypto Currency', coin_path(@coin), method: :delete, data: { confirm: "Are you sure?"}  %> |
+<%= link_to 'Back', coin_path %>

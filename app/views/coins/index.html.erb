@@ -7,7 +7,6 @@
       <th>Symbol</th>
       <th>Cost per</th>
       <th>Amount owned</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -20,16 +19,13 @@
             <tr>
             <% for x in @lookup_coin %>
               <% if coin.symbol == x["symbol"]  %>
-                    <td><%= x["name"] %></td>
+                    <td><%= link_to x["name"], coin %></td>
               <% end %>
             <% end %>
 
         <td><%= coin.symbol %></td>
         <td><%= coin.cost_per %></td>
         <td><%= coin.amount_owned %></td>
-        <td><%= link_to 'Show', coin %></td>
-        <td><%= link_to 'Edit', edit_coin_path(coin) %></td>
-        <td><%= link_to 'Destroy', coin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% end %>
     <% end %>
