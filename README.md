@@ -1,1 +1,1 @@
-An app for users to keep track of their crypto portfolio . The data is extracted from Coin Market Cap's API. 
+An app for users to keep track of their crypto portfolio . Coin data is extracted using Coin Market Cap's API. 
