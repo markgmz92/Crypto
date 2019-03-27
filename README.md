@@ -1,1 +1,1 @@
-A simple crypto app built using the Rails that stores a user's crypto currency portfolio. The data is extracted from Coin Market Cap's API. 
+An app for users to keep track of their crypto portfolio . The data is extracted from Coin Market Cap's API. 
